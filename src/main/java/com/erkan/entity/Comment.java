@@ -1,8 +1,14 @@
 package com.erkan.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import se.sda.web.demo.categories.OneToMany;
+import se.sda.web.demo.products.Product;
 
 @Entity   //ORM
 public class Comment {
@@ -11,6 +17,10 @@ public class Comment {
 	@GeneratedValue
 	private int id;
 	
+	/* bunu yazmaya gerek yok. cunku Artcile da tanimladik?
+	@ManyToOne
+	private Article article; */
+
 	private String body;
 	
 	private String authorName;

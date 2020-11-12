@@ -23,7 +23,7 @@ public class CommentService {
 		return commentRepo.findById(commentId);
 	}
 	
-	public Comment saveNewComment(Comment newComment) {
+	public Comment create(Comment newComment) {
 		
 		return commentRepo.save(newComment);
 	}
@@ -34,6 +34,10 @@ public class CommentService {
 	
 	}
 	
-	
+	public Comment update(Comment updatedComment) {
+        return commentRepo.save(updatedComment);
+    }
 
 }
+
+
