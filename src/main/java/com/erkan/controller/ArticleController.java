@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,19 +23,40 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 	
-	@RequestMapping("/")
-	@ResponseBody
-	public String sayHello(){
-		System.out.println("hello cagirkdi");
-		return "Hello";
+	 
+	public ArticleController(@Autowired ArticleService artcileService) {
+	     this.articleService = artcileService;
 	}
-	@RequestMapping("/articles")
+
+	
+	@GetMapping("/articles")
 	public List<Article> getAll(){
 		return articleService.getAll();
 	}
-	@RequestMapping("/articles/{id}")
+	
+	
+	@GetMapping("/articles/{id}")
 	public Article getById(@PathVariable int id){
 		return articleService.getById(id)
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
+	
+	
+	// Create an Article
+	@PostMapping("/articles")
+	public Article create(@RequestBody Article newArticle) {
+	
+		return articleService.create(newArticle);
+	}
+	
+	@PutMapping("/articles")
+    public Article update(@RequestBody Article article) {
+        return articleService.update(article);
+    }
+
+    @DeleteMapping("artciles/{id}")
+    public void delete(@PathVariable Integer id) {
+        articleService.delete(id);
+    }
+
 }

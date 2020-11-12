@@ -24,16 +24,22 @@ public class ArticleService {
 		return articleRepo.findById(articleId);
 	}
 	
-	public Article saveNewArticle(Article newArticle) {
+	public Article create(Article newArticle) {
+		
 		
 		return articleRepo.save(newArticle);
 	}
-	
+
 	public void deleteArticle(int articleId) {
 		
 		articleRepo.deleteById(articleId);
 	
 	}
+
+	public Article update(Article updatedArticle) {
+        return articleRepo.save(updatedArticle);
+    }
+
 	
 	
 }
