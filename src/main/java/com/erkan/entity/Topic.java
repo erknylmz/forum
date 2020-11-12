@@ -1,6 +1,5 @@
 package com.erkan.entity;
 
-
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -44,9 +43,5 @@ public class Topic {
 	public String toString() {
 		return "Topic [id=" + id + ", topicName=" + topicName + "]";
 	}
-
-	
-
-	
 
 }

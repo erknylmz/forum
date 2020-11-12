@@ -28,7 +28,7 @@ public class CommentService {
 		return commentRepo.save(newComment);
 	}
 	
-	public void deleteComment(int commentId) {
+	public void delete(int commentId) {
 		
 		commentRepo.deleteById(commentId);
 	

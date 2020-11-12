@@ -6,11 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.erkan.entity.Topic;
 import com.erkan.repos.TopicRepo;
 
 @Service
 public class TopicService {
+	
 	@Autowired
 	TopicRepo topicRepo;
 	
@@ -22,16 +24,19 @@ public class TopicService {
 		return topicRepo.findById(topicId);
 	}
 	
-	public Topic saveNewTopic(Topic newTopic) {
+	public Topic create(Topic newTopic) {
 		
 		return topicRepo.save(newTopic);
 	}
 	
-	public void deleteTopic(int topicId) {
+	public void delete(int topicId) {
 		
 		topicRepo.deleteById(topicId);
 	
 	}
 	
+	public Topic update(Topic updatedTopic) {
+        return topicRepo.save(updatedTopic);
+    }
 
 }
