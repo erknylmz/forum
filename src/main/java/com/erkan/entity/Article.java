@@ -1,27 +1,30 @@
 package com.erkan.entity;
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+
 
 @Entity   //ORM
 public class Article {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(nullable=false, length=100)
 	private  String title;
 	
 	private String body;
 	
 	private String authorName;
 	
-	@OneToMany
-	private List<Comment> commentList;
-
 	public String getTitle() {
 		return title;
 	}
@@ -50,13 +53,7 @@ public class Article {
 		return id;
 	}
 
-	public List<Comment> getCommentList() {
-		return commentList;
-	}
-
-	public void setCommentList(List<Comment> commentList) {
-		this.commentList = commentList;
-	}
+	
 
 	@Override
 	public String toString() {

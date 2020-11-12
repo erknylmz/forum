@@ -1,21 +1,29 @@
 package com.erkan.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 
 @Entity   //ORM
 public class Comment {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	/* bunu yazmaya gerek yok. cunku Artcile da tanimladik?
-	@ManyToOne
-	private Article article; */
+	@ManyToOne(cascade=CascadeType.ALL) // ORM
+	@JoinColumn(name="comment_id", nullable=false)
+	private Article article;
 
+	
 	private String body;
 	
 	private String authorName;
@@ -39,6 +47,14 @@ public class Comment {
 
 	public int getId() {
 		return id;
+	}
+	
+	public Article getArticle() {
+		return article;
+	}
+
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 
 	@Override

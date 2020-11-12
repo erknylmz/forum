@@ -1,23 +1,24 @@
 package com.erkan.entity;
 
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity   //ORM
 public class Topic {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	private String topicName;
 	
-	@OneToMany
+	@ManyToMany
 	private List<Article> articleList;
+	
 
 	public String getTopicName() {
 		return topicName;
