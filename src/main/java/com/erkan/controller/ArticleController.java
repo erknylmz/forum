@@ -28,12 +28,16 @@ public class ArticleController {
 	}
 
 	
+	/**
+	 * 
+	 * @return all articles
+	 */
 	@GetMapping("/articles")
 	public List<Article> getAll(){
 		return articleService.getAll();
 	}
 	
-	
+	//articles by given id or response Not Found
 	@GetMapping("/articles/{id}")
 	public Article getById(@PathVariable int id){
 		return articleService.getById(id)
@@ -41,21 +45,30 @@ public class ArticleController {
 	}
 	
 	
-	// Create an Article
+	// create new article
 	@PostMapping("/articles")
 	public Article create(@RequestBody Article newArticle) {
 	
-		return articleService.create(newArticle);
+		return articleService.save(newArticle);
 	}
 	
+	// update given article
+	//it is defined only one method in ArticleService "save()" to update or to save 
 	@PutMapping("/articles")
     public Article update(@RequestBody Article article) {
-        return articleService.update(article);
+        return articleService.save(article);
     }
 
-    @DeleteMapping("artciles/{id}")
+	//delete by given article id
+    @DeleteMapping("articles/{id}")
     public void delete(@PathVariable Integer id) {
-        articleService.deleteArticle(id);
+        articleService.deleteArticleById(id);
     }
 
+    //delete by given article
+    @DeleteMapping("articles")
+    public void deleteByArticle(@PathVariable Article article) {
+        articleService.deleteArticle(article);
+    }
+       
 }

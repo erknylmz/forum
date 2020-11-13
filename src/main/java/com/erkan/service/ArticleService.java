@@ -14,34 +14,30 @@ public class ArticleService {
 	@Autowired
 	ArticleRepo articleRepo;
 	
-	
-	
+	// get all articles
 	public List<Article> getAll(){
 		return articleRepo.findAll();
 	}
 	
+	//get by given article id 
 	public Optional <Article> getById(int articleId){
 		return articleRepo.findById(articleId);
 	}
 	
-	public Article create(Article newArticle) {
-		
-		
+	//this method is for both to update and to save
+	//get by given article id 
+	public Article save(Article newArticle) {
 		return articleRepo.save(newArticle);
 	}
 
-	public void deleteArticle(int articleId) {
-		
+	//delete by given article id
+	public void deleteArticleById(int articleId) {
 		articleRepo.deleteById(articleId);
 	
 	}
-
-	public Article update(Article updatedArticle) {
-        return articleRepo.save(updatedArticle);
-    }
-
 	
-
-	
-	
+	//delete by given article
+	public void deleteArticle(Article article) {
+		articleRepo.delete(article);
+	}	
 }

@@ -15,28 +15,30 @@ public class CommentService {
 	@Autowired
 	CommentRepo commentRepo;
 	
+	//get all comments
 	public List<Comment> getAll(){
 		return commentRepo.findAll();
 	}
 	
+	//get given comment id
 	public Optional <Comment> getById(int commentId){
 		return commentRepo.findById(commentId);
 	}
 	
-	public Comment create(Comment newComment) {
-		
+	//save or update comment
+	public Comment save(Comment newComment) {
 		return commentRepo.save(newComment);
 	}
 	
-	public void delete(int commentId) {
-		
+	//delete given comment id
+	public void deleteById(int commentId) {	
 		commentRepo.deleteById(commentId);
-	
 	}
 	
-	public Comment update(Comment updatedComment) {
-        return commentRepo.save(updatedComment);
-    }
+	//delete given comment
+	public void delete(Comment comment) {
+		commentRepo.delete(comment);
+	}
 
 }
 

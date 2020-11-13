@@ -1,8 +1,5 @@
 package com.erkan.entity;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,19 +7,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
-
-@Entity   //ORM
+@Entity
 public class Comment {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade=CascadeType.ALL) // ORM
-	@JoinColumn(name="comment_id", nullable=false)
+	@ManyToOne // Each article can have zero or more comments
+	@JoinColumn(name="comment_id", nullable=false) // a comment has to belong an article.
 	private Article article;
-
 	
 	private String body;
 	

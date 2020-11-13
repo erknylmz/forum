@@ -16,8 +16,8 @@ public class Topic {
 	
 	private String topicName;
 	
-	@ManyToMany
-	private List<Article> articleList;
+	@ManyToMany  //Each topic can have many articles and each article can belong to many topics.
+	private List<Article> articles;
 	
 
 	public String getTopicName() {
@@ -29,11 +29,11 @@ public class Topic {
 	}
 
 	public List<Article> getArticleList() {
-		return articleList;
+		return articles;
 	}
 
 	public void setArticleList(List<Article> articleList) {
-		this.articleList = articleList;
+		this.articles = articleList;
 	}
 
 	public int getId() {

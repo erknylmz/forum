@@ -26,30 +26,42 @@ public class CommentController {
     }
 	
 	
+    // get all comments
 	@GetMapping("/comments")
 	public List<Comment> getAll(){
 		return commentService.getAll();
 	}
 	
+	// get the comment by given comment id
 	@GetMapping("/comments/{id}")
 	public Comment getById(@PathVariable int id){
 		return commentService.getById(id)
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 
+	// it is defined an only one method in comment service "save" it is to Update and to save
+	//create a new comment
 	@PostMapping("/comments")
     public Comment create(@RequestBody Comment comment) {
-        return commentService.create(comment);
+        return commentService.save(comment);
     }
 	
+	//update given comment
 	@PutMapping("/comments")
     public Comment update(@RequestBody Comment comment) {
-        return commentService.update(comment);
+        return commentService.save(comment);
     }
 
+	//delete given commentId
     @DeleteMapping("comments/{id}")
-    public void delete(@PathVariable Integer id) {
-    	commentService.delete(id);
+    public void deleteById(@PathVariable Integer id) {
+    	commentService.deleteById(id);
+    }
+    
+    //delete given comment
+    @DeleteMapping("comments")
+    public void deleteComment(@PathVariable Comment comment) {
+    	commentService.delete(comment);
     }
 	
 }
