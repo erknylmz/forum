@@ -7,6 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+/**
+ * 
+ * Comment class has id, body, authorName and Article
+ * Comment and Article classes have a ManyToOne relationship. 
+ * Each article can have zero or more comments.
+ *
+ * @author Erkan Yilmaz
+ */
 @Entity
 public class Comment {
 	
@@ -14,14 +22,17 @@ public class Comment {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne // Each article can have zero or more comments
-	@JoinColumn(name="comment_id", nullable=false) // a comment has to belong an article.
+	/**
+	 *  Each article can have zero or more comments
+	 *  A comment has to belong an article.
+	 */
+	@ManyToOne
+	@JoinColumn(nullable=false) 	
 	private Article article;
 	
 	private String body;
 	
 	private String authorName;
-
 
 	public String getBody() {
 		return body;

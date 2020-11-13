@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -25,42 +26,59 @@ public class CommentController {
         this.commentService = commentService;
     }
 	
-	
-    // get all comments
+    /**
+     * GetAll method gets all comments
+     * @param articleId
+     * @return List<Comment>
+     */
 	@GetMapping("/comments")
-	public List<Comment> getAll(){
-		return commentService.getAll();
+	public List<Comment> getAll(@RequestParam(required=false) String articleId){
+		if (articleId==null) {
+			return commentService.getAll();
+		}
+		
+		else {
+			return commentService.getAllByArticleId(Integer.parseInt(articleId));
+		}	
 	}
 	
-	// get the comment by given comment id
+	/**
+	 * GetById  method gets given comment id
+	 * @param id
+	 * @return Comment
+	 */
 	@GetMapping("/comments/{id}")
 	public Comment getById(@PathVariable int id){
 		return commentService.getById(id)
 		.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 
-	// it is defined an only one method in comment service "save" it is to Update and to save
-	//create a new comment
+	/**
+	 * Create method creates a new comment
+	 * @param comment
+	 * @return Comment
+	 */
 	@PostMapping("/comments")
     public Comment create(@RequestBody Comment comment) {
         return commentService.save(comment);
     }
 	
-	//update given comment
+	/**
+	 * Update method updates a given comment
+	 * @param comment
+	 * @return Comment
+	 */
 	@PutMapping("/comments")
     public Comment update(@RequestBody Comment comment) {
         return commentService.save(comment);
     }
-
-	//delete given commentId
-    @DeleteMapping("comments/{id}")
-    public void deleteById(@PathVariable Integer id) {
-    	commentService.deleteById(id);
-    }
     
-    //delete given comment
+    /**
+     * Delete method deletes a given comment
+     * @param comment
+     */
     @DeleteMapping("comments")
-    public void deleteComment(@PathVariable Comment comment) {
+    public void delete(@PathVariable Comment comment) {
     	commentService.delete(comment);
     }
 	

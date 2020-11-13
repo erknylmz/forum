@@ -7,7 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-@Entity   //ORM
+/**
+ * This class has id, topicName and articles.
+ * Topic and Article classes have a ManyToMany relationship.
+ * Each topic can have many articles and each article can belong to many topics.
+ * @author Erkan Yilmaz
+ *
+ */
+@Entity
 public class Topic {
 
 	@Id
@@ -16,7 +23,7 @@ public class Topic {
 	
 	private String topicName;
 	
-	@ManyToMany  //Each topic can have many articles and each article can belong to many topics.
+	@ManyToMany 
 	private List<Article> articles;
 	
 

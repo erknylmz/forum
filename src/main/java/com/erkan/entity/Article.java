@@ -1,25 +1,47 @@
 package com.erkan.entity;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
-
-@Entity   //ORM
+/**
+ * This class has title, body, authorName fields  and a list from Topic. 
+ * The class has  also a ManyToMany relationship with Topic class.
+ * 
+ * @author Erkan Yilmaz
+ *
+ */
+@Entity
 public class Article {
 	
+	/**
+	 * id must be unique. Spring generates it automatically
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable=false, length=100)
+	/**
+	 * Article has to have at least "title"
+	 */
+	@Column(nullable=false)
 	private  String title;
 	
 	private String body;
 	
 	private String authorName;
+	
+	/**
+	 * Article and Topic classes have a ManyToMany relationship.
+	 * Each topic can have many articles and 
+	 * each article can belong to many topics.
+	 */
+	@ManyToMany
+	private List<Topic> topics;
 	
 	public String getTitle() {
 		return title;
@@ -49,30 +71,18 @@ public class Article {
 		return id;
 	}
 
+	
+	public List<Topic> getTopics() {
+		return topics;
+	}
+
+	public void setTopics(List<Topic> topics) {
+		this.topics = topics;
+	}
+
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", body=" + body + ", authorName=" + authorName + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		Article other = (Article) obj;
-//		if (id != other.id)
-//			return false;
-//		return true;
-//	}
 }
