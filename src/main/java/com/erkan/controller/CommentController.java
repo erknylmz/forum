@@ -78,7 +78,7 @@ public class CommentController {
      * @param comment
      */
     @DeleteMapping("comments")
-    public void delete(@PathVariable Comment comment) {
+    public void delete(@RequestBody Comment comment) {
     	commentService.delete(comment);
     }
 	

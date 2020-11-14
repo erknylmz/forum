@@ -98,8 +98,8 @@ public class ArticleController {
      * @param article
      */
     @DeleteMapping("articles")
-    public void deleteByArticle(@PathVariable Article article) {
-        articleService.deleteArticle(article);
+    public void deleteByArticle(@RequestBody Article article) {
+        articleService.delete(article);
     }
        
 }

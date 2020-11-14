@@ -61,7 +61,7 @@ public class TopicController {
      * @param topic
      */
     @DeleteMapping("topics")
-    public void delete(@PathVariable Topic topic) {
+    public void delete(@RequestBody Topic topic) {
     	topicService.delete(topic);
     }  
 }

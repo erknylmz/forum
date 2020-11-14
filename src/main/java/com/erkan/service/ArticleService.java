@@ -50,7 +50,7 @@ public class ArticleService {
 	 * DeleteArticle method deletes given article on database
 	 * @param article
 	 */
-	public void deleteArticle(Article article) {
+	public void delete(Article article) {
 		articleRepo.delete(article);
 	}
 }
