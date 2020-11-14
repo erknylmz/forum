@@ -83,5 +83,5 @@ GET     |articles?topicId={topicId} | return all articles with the given topicId
 
 [https://app.diagrams.net/#G1qgThH3DhE2K_3p1j3YoX9leBZSM8nXfD]
 
-
+![alt text](https://github.com/erknylmz/forum/blob/main/ForumUML.png)
 
